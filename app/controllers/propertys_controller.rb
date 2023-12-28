@@ -21,6 +21,9 @@ class PropertysController < ApplicationController
     end
   end
 
+  def edit
+  end
+
   def update
     if @property.update(property_params)
       redirect_to @property, notice: success_message('updated')
