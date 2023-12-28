@@ -1,0 +1,14 @@
+<h1>Lista de Imágenes</h1>
+
+<% @imgs.each do |img| %>
+  <div>
+    <p><strong>Title:</strong> <%= img.title %></p>
+    
+    <% img.pictures.each do |picture| %>
+      <%= image_tag(picture, class: "img-thumbnail") %>
+    <% end %>
+  </div>
+  <hr>
+<% end %>
+
+<%= render 'form', img: Img.new %>

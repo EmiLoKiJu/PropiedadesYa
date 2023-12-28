@@ -16,7 +16,7 @@ class ImgsController < ApplicationController
     if @img.save
       redirect_to @img, notice: 'Image was successfully created.'
     else
-      render :new
+      render :index
     end
   end
 
