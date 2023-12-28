@@ -21,4 +21,4 @@ Things you may want to cover:
 
 * Deployment instructions
 
-* ...
+ER diagram link: https://drawsql.app/teams/team1-238/diagrams/parachute-db-diagram
