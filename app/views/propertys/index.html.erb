@@ -1,0 +1,44 @@
+<h1>Propiedades</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Titulo</th>
+      <th>Renta?</th>
+      <th>Precio</th>
+      <th>En dolares?</th>
+      <th>ID Comuna</th>
+      <th>Dirección</th>
+      <th>m2</th>
+      <th>Dormitorios</th>
+      <th>Banos</th>
+      <th>Descripcion</th>
+      <th>Acciones</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    <% @properties.each do |property| %>
+      <tr>
+        <td><%= property.title %></td>
+        <td><%= property.rent %></td>
+        <td><%= property.price %></td>
+        <td><%= property.dollars %></td>
+        <td><%= property.commune_id %></td>
+        <td><%= property.address %></td>
+        <td><%= property.area %></td>
+        <td><%= property.rooms%></td>
+        <td><%= property.bathrooms %></td>
+        <td><%= property.description %></td>
+        <!-- Agrega más celdas según las propiedades que tengas -->
+        <td>
+          <%= link_to 'Ver', property %>
+          <%= link_to 'Editar', edit_property_path(property) %>
+          <%= link_to 'Eliminar', property, method: :delete, data: { confirm: '¿Estás seguro?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Nueva Propiedad', new_property_path %>
