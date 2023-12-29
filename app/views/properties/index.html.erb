@@ -1,46 +1,23 @@
 <h1>Propiedades</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Titulo</th>
-      <th>Renta?</th>
-      <th>Precio</th>
-      <th>En dolares?</th>
-      <th>ID Comuna</th>
-      <th>Dirección</th>
-      <th>m2</th>
-      <th>Dormitorios</th>
-      <th>Banos</th>
-      <th>Descripcion</th>
-      <th>Fotos</th>
-      <th>Acciones</th>
-      
-    </tr>
-  </thead>
-  <tbody>
-    <% @properties.each do |property| %>
-      <tr>
-        <td><%= property.title %></td>
-        <td><%= property.rent %></td>
-        <td><%= property.price %></td>
-        <td><%= property.dollars %></td>
-        <td><%= property.commune_id %></td>
-        <td><%= property.address %></td>
-        <td><%= property.area %></td>
-        <td><%= property.rooms%></td>
-        <td><%= property.bathrooms %></td>
-        <td><%= property.description %></td>
-        <td><%= link_to 'Ver', property_path(property) %></td>
-        <!-- Agrega más celdas según las propiedades que tengas -->
-        <td>
-          <%= link_to 'Ver', property %>
-          <%= link_to 'Editar', edit_property_path(property) %>
-          <%= link_to 'Eliminar', property, method: :delete, data: { confirm: '¿Estás seguro?' } %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
+<% @properties.each do |property| %>
+  <div>
+    <h1>Title: <%= property.title %></h1>
+    <p>Para renta? <%= property.rent %></p>
+    <p>Precio<%= property.price %></p>
+    <p>En dolares?<%= property.dollars %></p>
+    <p>Comuna: <%= property.commune_id %></p>
+    <p>Direccion: <%= property.address %></p>
+    <p>Metros cuadrados: <%= property.area %></p>
+    <p>Habitaciones: <%= property.rooms%></p>
+    <p>Banos: <%= property.bathrooms %></p>
+    <p>Descripcion: <%= property.description %></p>
+    <p><%= link_to 'Ver', property_path(property) %></p>
+    <!-- Agrega más celdas según las propiedades que tengas -->
+    <td>
+      <%= link_to 'Ver', property %>
+      <%= link_to 'Editar', edit_property_path(property) %>
+      <%= link_to 'Eliminar', property, method: :delete, data: { confirm: '¿Estás seguro?' } %>
+    </td>
+  </div>
+<% end %>
 <%= link_to 'Nueva Propiedad', new_property_path %>

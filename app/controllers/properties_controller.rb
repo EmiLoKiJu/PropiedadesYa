@@ -42,6 +42,10 @@ class PropertiesController < ApplicationController
 
   private
 
+  def success_message(action)
+    "Property was successfully #{action}."
+  end
+
   def property_params
     params.require(:property).permit(
       :title, :rent, :price, :dollars, :commune_id, :address, :area, :rooms, :bathrooms, :description, pictures: []

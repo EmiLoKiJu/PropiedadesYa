@@ -21,7 +21,7 @@
 
     <div>
       <%= f.label :commune_id %>
-      <%= f.collection_select :commune_id, Commune.all, :id, :name, placeholder: "Commune" %>
+      <%= f.collection_select :commune_id, Commune.order(:name), :id, :name, placeholder: "Commune" %>
     </div>
 
     <div>
