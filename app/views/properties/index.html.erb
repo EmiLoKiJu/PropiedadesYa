@@ -5,6 +5,7 @@
 
 <%= turbo_frame_tag "properties" do %>
   <%= render partial: 'property', collection: @properties %>
+  <%== pagy_nav(@pagy, link_extra: 'data_turbo_action="advance"') %>
 <% end %>
 
 <%= link_to 'Nueva Propiedad', new_property_path %>

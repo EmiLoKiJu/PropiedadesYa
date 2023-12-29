@@ -3,7 +3,8 @@ class PropertiesController < ApplicationController
   before_action :set_property, only: %i[show update destroy]
   
   def index
-    @properties = Property.where("title LIKE ?", "%#{params[:filter]}%").all
+    filtered = Property.where("title LIKE ?", "%#{params[:filter]}%").all
+    @pagy, @properties = pagy(filtered.all, items: 1)
   end
 
   def show
