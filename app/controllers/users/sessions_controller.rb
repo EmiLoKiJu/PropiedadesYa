@@ -5,6 +5,7 @@ class Users::SessionsController < Devise::SessionsController
 
   def show
     @user = current_user
+    @user_properties = @user.properties
   end
 
   # GET /resource/sign_in

@@ -6,6 +6,7 @@
       <th>First name</th>
       <th>Last name</th>
       <th>Email</th>
+      <th>Properties</th>
     </tr>
   </thead>
   <tbody>
@@ -13,6 +14,17 @@
       <td><%= @user.first_name %></td>
       <td><%= @user.last_name %></td>
       <td><%= @user.email %></td>
+      <td>
+        <% if @user_properties.any? %>  
+          <ul>
+            <% @user_properties.each do |property| %>
+              <li><%= link_to property.title, property_path(property) %></li>
+            <% end %>
+          </ul>
+        <% else %>
+          No properties found.
+        <% end %>
+      </td>
     </tr>
   </tbody>
 </table>
