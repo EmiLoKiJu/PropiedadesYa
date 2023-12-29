@@ -49,8 +49,12 @@
 
     <div>
       <%= f.label :pictures %>
+      <% @property.pictures.each do |picture| %>
+        <%= f.hidden_field :pictures, multiple: true, value: picture.signed_id %>
+      <% end %>
       <%= f.file_field :pictures, multiple: true %> 
     </div>
+    
 
     <div>
       <p>Current pictures:</p>

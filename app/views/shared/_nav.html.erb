@@ -17,6 +17,7 @@
     <% end %>
   </div>
   <br />
+  <%= link_to 'Home', properties_path %>
   <% if user_signed_in? %>
     <%= link_to 'Perfil', user_profile_path(current_user) %>
     <%= link_to 'Logout', custom_destroy_user_session_path %>

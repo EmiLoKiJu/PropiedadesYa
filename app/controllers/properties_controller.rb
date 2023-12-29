@@ -18,10 +18,10 @@ class PropertiesController < ApplicationController
     @property = Property.new(property_params)
     @property.user = current_user
     if @property.save
-      redirect_to properties_url, notice: success_message('created')
+      redirect_to property_url(@property), notice: success_message('created')
     else
-      puts "Errors: #{@property.errors.full_messages}"
-      render :new
+      flash[:notice] = "Errors: #{@property.errors.full_messages}"
+      redirect_to new_property_path
     end
   end
 
@@ -33,8 +33,8 @@ class PropertiesController < ApplicationController
     if @property.update(property_params)
       redirect_to properties_url, notice: success_message('updated')
     else
-      puts "Errors: #{property.errors.full_messages}"
-      render :edit
+      flash[:notice] = "Errors: #{@property.errors.full_messages}"
+      redirect_to edit_property_path(@property)
     end
   end
 
