@@ -1,10 +1,11 @@
 class PropertiesController < ApplicationController
+  load_and_authorize_resource
   before_action :authenticate_user!, only: %i[create edit update destroy new]
   before_action :set_property, only: %i[show edit update destroy]
   
   def index
     filtered = Property.where("title LIKE ?", "%#{params[:filter]}%").all
-    @pagy, @properties = pagy(filtered.all, items: 1)
+    @pagy, @properties = pagy(filtered.all, items: 3)
   end
 
   def show

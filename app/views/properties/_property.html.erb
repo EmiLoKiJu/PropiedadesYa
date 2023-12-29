@@ -8,6 +8,7 @@
   <p>
     Comuna: <%= Commune.find(property.commune_id).name %>
   </p>
+  <h2>Dueño de la propiedad: <%= property.user.first_name %> <%= property.user.last_name %></h2>
   <p>
     <%= link_to 'Ver', property_path(property), data: { turbo_frame: "_top" } %>
     <%= link_to 'Editar', edit_property_path(property), data: { turbo_frame: "_top" } %>
