@@ -12,7 +12,7 @@
   <p>
     <%= link_to 'Ver', property_path(property), data: { turbo_frame: "_top" } %>
     <%= link_to 'Editar', edit_property_path(property), data: { turbo_frame: "_top" } %>
-    <%= link_to 'Eliminar', property, method: :delete, data: { turbo_frame: "_top" } %>
+    <%= button_to 'Eliminar', property_path(property), data: { turbo_frame: "_top" }, method: :delete %>
   </p>
   
 </div>

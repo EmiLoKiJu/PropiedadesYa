@@ -1,6 +1,8 @@
 <div>
   <%= controller_name %> <%= action_name %>
-  <h1> logged as <%= current_user.first_name %> <%= current_user.last_name %> </h1>
+  <% if user_signed_in? %>
+    <h1> logged as <%= current_user.first_name %> <%= current_user.last_name %> </h1>
+  <% end %>
   </div>
   <br />
   <%= link_to 'Home', properties_path %>

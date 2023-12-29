@@ -3,6 +3,8 @@ class Property < ApplicationRecord
   has_many_attached :pictures
   belongs_to :commune
 
+  before_destroy :delete_attached_pictures
+
   validates :title, presence: true
   validates :rent, inclusion: { in: [true, false] }
   validates :price, presence: true, numericality: { greater_than: 0 }
@@ -45,6 +47,12 @@ class Property < ApplicationRecord
         errors.add(:description, "should not contain contact information")
         break
       end
+    end
+  end
+
+  def delete_attached_pictures
+    pictures.each do |picture|
+      picture.purge
     end
   end
 end

@@ -1,6 +1,8 @@
 <h1>Propiedades</h1>
 <%= form_with url: properties_path, method: :get, data: { turbo_frame: "properties", turbo_action: "advance" } do %>
-  <%= text_field_tag "filter", nil, placeholder: "filter" %>
+  <%= text_field_tag "filter_title", nil, placeholder: "filter_title" %>
+  <%= text_field_tag "filter_bathrooms", nil, placeholder: "filter_bathrooms" %>
+  <%= submit_tag "Filter" %>
 <% end %>
 
 <%= turbo_frame_tag "properties" do %>

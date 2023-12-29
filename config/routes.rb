@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     get "/custom_sign_out" => "devise/sessions#destroy", as: :custom_destroy_user_session
   end
   resources :properties
+
   resources :commune, only: [:show]
 
   get "attachments/:id/purge", to: "attachments#purge", as: :purge_attachment
