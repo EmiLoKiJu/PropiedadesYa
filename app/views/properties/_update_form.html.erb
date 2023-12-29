@@ -55,8 +55,10 @@
     <div>
       <p>Current pictures:</p>
       <% property.pictures.each do |picture| %>
+        <%= picture %>
         <div>
           <%= link_to image_tag(property.make_thumbnail(picture)), picture %>
+          <%= link_to "borrar foto", purge_attachment_path(picture) %>
         </div>
       <% end %>
     </div>

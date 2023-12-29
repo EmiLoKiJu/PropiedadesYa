@@ -12,4 +12,6 @@ Rails.application.routes.draw do
   end
   resources :properties
   resources :commune, only: [:show]
+
+  get "attachments/:id/purge", to: "attachments#purge", as: :purge_attachment
 end
