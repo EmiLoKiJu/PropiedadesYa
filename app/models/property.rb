@@ -13,4 +13,8 @@ class Property < ApplicationRecord
   validates :rooms, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :bathrooms, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :description, presence: true
+
+  def thumbnail
+    pictures.first.variant(resize_to_limit: [150, 150]).processed if pictures.attached?
+  end
 end

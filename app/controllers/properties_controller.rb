@@ -3,7 +3,7 @@ class PropertiesController < ApplicationController
   before_action :set_property, only: %i[show update destroy]
   
   def index
-    @properties = Property.all
+    @properties = Property.where("title LIKE ?", "%#{params[:filter]}%").all
   end
 
   def show
