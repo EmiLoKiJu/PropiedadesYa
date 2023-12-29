@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  root 'propertys#index'
+  root 'properties#index'
 
   devise_for :users
-  resources :propertys
+  resources :properties
   resources :imgs, only: [:index, :show, :new, :create]
   resources :commune, only: [:show]
 end

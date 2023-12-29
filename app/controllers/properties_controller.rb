@@ -1,4 +1,5 @@
-class PropertysController < ApplicationController
+class PropertiesController < ApplicationController
+  before_action :authenticate_user!, only: %i[create edit update destroy new]
   before_action :set_property, only: %i[show update destroy]
   
   def index
@@ -14,9 +15,11 @@ class PropertysController < ApplicationController
 
   def create
     @property = Property.new(property_params)
+    @property.user = current_user
     if @property.save
-      redirect_to @property, notice: success_message('created')
+      redirect_to properties_url, notice: success_message('created')
     else
+      puts "Errors: #{@property.errors.full_messages}"  # or Rails.logger.debug
       render :new
     end
   end
@@ -41,7 +44,7 @@ class PropertysController < ApplicationController
 
   def property_params
     params.require(:property).permit(
-      :title, :rent, :price, :dollars, :commune_id, :address, :area, :rooms, :bathrooms, :description, img: []
+      :title, :rent, :price, :dollars, :commune_id, :address, :area, :rooms, :bathrooms, :description, pictures: []
     )
   end
 
