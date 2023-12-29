@@ -1,7 +1,23 @@
 <h1>Propiedades</h1>
 <%= form_with url: properties_path, method: :get, data: { turbo_frame: "properties", turbo_action: "advance" } do %>
   <%= text_field_tag "filter_title", nil, placeholder: "filter_title" %>
-  <%= text_field_tag "filter_bathrooms", nil, placeholder: "filter_bathrooms" %>
+  <%= number_field_tag "filter_bathrooms", nil, placeholder: "Mínimo Nro de Baños" %>
+
+  <div>
+    <label>
+      <%= radio_button_tag "filter_rent", "any", true %>
+      Compra/Arriendo
+    </label>
+    <label>
+      <%= radio_button_tag "filter_rent", "true" %>
+      Compra
+    </label>
+    <label>
+      <%= radio_button_tag "filter_rent", "false" %>
+      Arriendo
+    </label>
+  </div>
+
   <%= submit_tag "Filter" %>
 <% end %>
 

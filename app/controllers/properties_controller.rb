@@ -9,7 +9,11 @@ class PropertiesController < ApplicationController
       filtered_properties = filtered_properties.where("title LIKE ?", "%#{params[:filter_title]}%")
     end
     if params[:filter_bathrooms].present?
-      filtered_properties = filtered_properties.where("bathrooms = ?", params[:filter_bathrooms])
+      filtered_properties = filtered_properties.where("bathrooms >= ?", params[:filter_bathrooms])
+    end
+    if params[:filter_rent].present? && params[:filter_rent] != "any"
+      rent_filter = params[:filter_rent] != "true"
+      filtered_properties = filtered_properties.where(rent: rent_filter)
     end
     @pagy, @properties = pagy(filtered_properties, items: 3)
   end
