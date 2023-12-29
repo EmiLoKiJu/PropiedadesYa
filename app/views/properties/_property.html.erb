@@ -8,10 +8,10 @@
   <p>
     Comuna: <%= Commune.find(property.commune_id).name %>
   </p>
-  <p><%= link_to 'Ver', property_path(property) %></p>
   <p>
-    <%= link_to 'Ver', property %>
+    <%= link_to 'Ver', property_path(property), data: { turbo_frame: "_top" } %>
     <%= link_to 'Editar', edit_property_path(property), data: { turbo_frame: "_top" } %>
-    <%= link_to 'Eliminar', property, method: :delete, data: { confirm: '¿Estás seguro?' } %>
+    <%= link_to 'Eliminar', property, method: :delete, data: { turbo_frame: "_top" } %>
   </p>
+  
 </div>
