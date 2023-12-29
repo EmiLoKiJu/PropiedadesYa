@@ -1,6 +1,6 @@
 class PropertiesController < ApplicationController
   before_action :authenticate_user!, only: %i[create edit update destroy new]
-  before_action :set_property, only: %i[show update destroy]
+  before_action :set_property, only: %i[show edit update destroy]
   
   def index
     filtered = Property.where("title LIKE ?", "%#{params[:filter]}%").all
@@ -20,18 +20,20 @@ class PropertiesController < ApplicationController
     if @property.save
       redirect_to properties_url, notice: success_message('created')
     else
-      puts "Errors: #{@property.errors.full_messages}"  # or Rails.logger.debug
+      puts "Errors: #{@property.errors.full_messages}"
       render :new
     end
   end
 
   def edit
+    @property
   end
 
   def update
     if @property.update(property_params)
-      redirect_to @property, notice: success_message('updated')
+      redirect_to properties_url, notice: success_message('updated')
     else
+      puts "Errors: #{property.errors.full_messages}"
       render :edit
     end
   end

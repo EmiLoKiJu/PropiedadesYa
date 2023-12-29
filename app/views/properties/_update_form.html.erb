@@ -1,0 +1,68 @@
+<%= form_with model: @property do |f| %>
+  <div>
+    <div>
+      <%= f.text_field :title, placeholder: "title" %>
+    </div>
+
+    <div>
+      <%= f.label :rent %>
+      <%= f.check_box :rent %>
+    </div>
+
+    <div>
+      <%= f.label :price %>
+      <%= f.number_field :price, step: "any", placeholder: "price" %>
+    </div>
+
+    <div>
+      <%= f.label :dollars %>
+      <%= f.check_box :dollars %>
+    </div>
+
+    <div>
+      <%= f.label :commune_id %>
+      <%= f.collection_select :commune_id, Commune.order(:name), :id, :name, placeholder: "Commune" %>
+    </div>
+
+    <div>
+      <%= f.text_field :address, placeholder: "Address" %>
+    </div>
+
+    <div>
+      <%= f.label :area %>
+      <%= f.number_field :area, placeholder: "Area" %>
+    </div>
+
+    <div>
+      <%= f.label :rooms %>
+      <%= f.number_field :rooms, placeholder: "Rooms" %>
+    </div>
+
+    <div>
+      <%= f.label :bathrooms %>
+      <%= f.number_field :bathrooms, placeholder: "Bathrooms" %>
+    </div>
+
+    <div>
+      <%= f.text_area :description, placeholder: "Description" %>
+    </div>
+
+    <div>
+      <%= f.label :pictures %>
+      <%= f.file_field :pictures, multiple: true %> 
+    </div>
+
+    <div>
+      <p>Current pictures:</p>
+      <% property.pictures.each do |picture| %>
+        <div>
+          <%= link_to image_tag(property.make_thumbnail(picture)), picture %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="login-button">
+      <%= f.submit "Guardar cambios" %>
+    </div>
+  </div>
+<% end %>

@@ -17,4 +17,8 @@ class Property < ApplicationRecord
   def thumbnail
     pictures.first.variant(resize_to_limit: [150, 150]).processed if pictures.attached?
   end
+
+  def make_thumbnail (picture)
+    picture.variant(resize_to_limit: [150, 150]).processed
+  end
 end
