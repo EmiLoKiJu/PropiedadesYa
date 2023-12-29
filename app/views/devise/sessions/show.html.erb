@@ -1,6 +1,20 @@
 <h1>Your Profile</h1>
-<p>First name: <%= @user.first_name %>
-<p>Last name: <%= @user.last_name %>
-<p>Email: <%= @user.email %></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @user.first_name %></td>
+      <td><%= @user.last_name %></td>
+      <td><%= @user.email %></td>
+    </tr>
+  </tbody>
+</table>
 
 <%= link_to 'Ver todas las propiedades', properties_path %>
