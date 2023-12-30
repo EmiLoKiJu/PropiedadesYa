@@ -13,6 +13,7 @@
  *= require_tree .
  *= require_self
  */
+
 /* Common styles for pagy-nav and pagy-nav-js */
 .pagy-nav,
 .pagy-nav-js {
@@ -40,6 +41,30 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+/* Styles for disabled pagy-nav and pagy-nav-js page links */
+.pagy-nav .page.prev.disabled,
+.pagy-nav .page.next.disabled,
+.pagy-nav-js .page.prev.disabled,
+.pagy-nav-js .page.next.disabled {
+  color: #cbd5e0;
+  cursor: default;
+}
+
+/* Styles for active pagy-nav and pagy-nav-js page links */
+.pagy-nav .page.active,
+.pagy-nav-js .page.active {
+  color: #fff;
+  cursor: default;
+  background-color: #718096;
+}
+
+/* Styles for disabled prev and next buttons within pagy-combo-nav-js */
+.pagy-combo-nav-js .page.prev.disabled,
+.pagy-combo-nav-js .page.next.disabled {
+  color: #cbd5e0;
+  cursor: default;
+}
+
 /* Hover and active states for pagy-nav and pagy-nav-js page links */
 .pagy-nav .page a:hover,
 .pagy-nav .page.active:hover,
@@ -64,15 +89,6 @@
   color: #fff;
 }
 
-/* Styles for disabled pagy-nav and pagy-nav-js page links */
-.pagy-nav .page.prev.disabled,
-.pagy-nav .page.next.disabled,
-.pagy-nav-js .page.prev.disabled,
-.pagy-nav-js .page.next.disabled {
-  color: #cbd5e0;
-  cursor: default;
-}
-
 /* Hover and active states for disabled pagy-nav and pagy-nav-js page links */
 .pagy-nav .page.prev.disabled:hover,
 .pagy-nav .page.next.disabled:hover,
@@ -84,14 +100,6 @@
 .pagy-nav-js .page.next.disabled:active {
   color: #cbd5e0;
   background-color: #edf2f7;
-}
-
-/* Styles for active pagy-nav and pagy-nav-js page links */
-.pagy-nav .page.active,
-.pagy-nav-js .page.active {
-  color: #fff;
-  cursor: default;
-  background-color: #718096;
 }
 
 /* Hover and active states for active pagy-nav and pagy-nav-js page links */
@@ -132,11 +140,4 @@
 .pagy-combo-nav-js .page.prev:active,
 .pagy-combo-nav-js .page.next:active {
   color: #2d3748;
-}
-
-/* Styles for disabled prev and next buttons within pagy-combo-nav-js */
-.pagy-combo-nav-js .page.prev.disabled,
-.pagy-combo-nav-js .page.next.disabled {
-  color: #cbd5e0;
-  cursor: default;
 }

@@ -33,6 +33,5 @@ class Users::SessionsController < Devise::SessionsController
     user_profile_path(current_user)
   end
 
-
   # If you have extra params to permit, append them to the sanitizer.
 end
