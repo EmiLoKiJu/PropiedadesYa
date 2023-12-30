@@ -1,7 +1,14 @@
 <div class="container my-4">
   <h2>Title: <%= @property.title %></h2>
-  <div class="d-flex">
-    <div class="me-5">
+  <div class="d-flex flex-column flex-md-row ">
+    <div class="d-flex flex-wrap justify-content-start gap-2 w-100 w-md-50">
+      <% @property.pictures.each do |picture| %>
+        <div class="me-2">
+          <%= link_to image_tag(@property.make_thumbnail(picture), class: "img-thumbnail"), picture %>
+        </div>
+      <% end %>
+    </div>
+    <div class="me-5 order-md-first w-100 w-md-50">
       <div class="mb-3">
         <%= @property.rent ? "Se arrienda" : "Se vende" %>
       </div>
@@ -24,13 +31,6 @@
         <%= button_to 'Editar', edit_property_path(@property), data: { turbo_frame: "_top" }, method: :get, class: "btn btn-secondary me-2" %>
         <%= button_to 'Eliminar', property_path(@property), data: { turbo_frame: "_top" }, method: :delete, class: "btn btn-danger" %>
       </div>
-    </div>
-    <div class="d-flex flex-wrap justify-content-start gap-2">
-      <% @property.pictures.each do |picture| %>
-        <div class="me-2">
-          <%= link_to image_tag(@property.make_thumbnail(picture), class: "img-thumbnail"), picture %>
-        </div>
-      <% end %>
     </div>
   </div>
 </div>
