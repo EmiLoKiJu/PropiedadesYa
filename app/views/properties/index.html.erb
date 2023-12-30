@@ -30,8 +30,8 @@
   <div>
     <%= turbo_frame_tag "properties", class: "d-flex flex-wrap justify-content-start gap-2 w-100" do %>
       <%= render partial: 'property', collection: @properties %>
-      <%== pagy_nav(@pagy, link_extra: 'data_turbo_action="advance"') %>
     <% end %>
+    <%== pagy_nav(@pagy, link_extra: 'data_turbo_action="advance"') %>
   </div>
 
   <%= link_to 'Nueva Propiedad', new_property_path %>
