@@ -27,7 +27,7 @@
               <td><%= property.title %></td>
               <td><%= property.rent ? "Se arrienda" : "Se vende" %></td>
               <td><%= property.dollars ? "USD" : "CLP" %></td>
-              <td><%= property.dollars ? property.price : "CLP" %></td>
+              <td><%= @dolar %> aca el dolar</td>
               <td><%= property.dollars ? "USD" : property.price %></td>
               <td><%= Commune.find(property.commune_id).name %></td>
               <td><%= property.address %></td>
