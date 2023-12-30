@@ -1,9 +1,8 @@
-<div>
+<div class="container">
   <%= controller_name %> <%= action_name %>
   <% if user_signed_in? %>
     <h1> logged as <%= current_user.first_name %> <%= current_user.last_name %> </h1>
   <% end %>
-  </div>
   <br />
   <%= link_to 'Home', properties_path %>
   <% if user_signed_in? %>
@@ -12,5 +11,5 @@
   <% else %>
     <%= link_to 'Login', new_user_session_path %>
   <% end %>
-  
+  <p>(nota1: Link para editar y eliminar para comprobar autorización)</p>
 </div>

@@ -1,34 +1,38 @@
-<h1>Propiedades</h1>
-<%= form_with url: properties_path, method: :get, data: { turbo_frame: "properties", turbo_action: "advance" } do %>
-  <%= text_field_tag "filter_title", nil, placeholder: "filter_title" %>
-  <%= number_field_tag "filter_bathrooms", nil, placeholder: "Mínimo Nro de Baños" %>
+<div class="container">
+  <h1>Propiedades</h1>
+  <%= form_with url: properties_path, method: :get, data: { turbo_frame: "properties", turbo_action: "advance" } do %>
+    <%= text_field_tag "filter_title", nil, placeholder: "filter_title" %>
+    <%= number_field_tag "filter_bathrooms", nil, placeholder: "Mínimo Nro de Baños" %>
 
+    <div>
+      <%= label_tag "filter_commune", "Commune:", class: "form-label" %>
+      <%= select_tag "filter_commune", options_from_collection_for_select(Commune.order(:name), :id, :name, params[:filter_commune]), include_blank: "Select Commune", class: "form-select" %>
+    </div>
+
+    <div>
+      <label>
+        <%= radio_button_tag "filter_rent", "any", true, class: "form-check-input" %>
+        <label class="form-label">Compra/Arriendo</label>
+      </label>
+      <label>
+        <%= radio_button_tag "filter_rent", "true", class: "form-check-input" %>
+        <label class="form-label">Compra</label>
+      </label>
+      <label>
+        <%= radio_button_tag "filter_rent", "false", class: "form-check-input" %>
+        <label class="form-label">Arriendo</label>
+      </label>
+    </div>
+
+    <%= submit_tag "Filter" %>
+  <% end %>
+  
   <div>
-    <%= label_tag "filter_commune", "Commune:", class: "form-label" %>
-    <%= select_tag "filter_commune", options_from_collection_for_select(Commune.order(:name), :id, :name, params[:filter_commune]), include_blank: "Select Commune", class: "form-select" %>
+    <%= turbo_frame_tag "properties", class: "d-flex flex-wrap justify-content-start gap-2 w-100" do %>
+      <%= render partial: 'property', collection: @properties %>
+      <%== pagy_nav(@pagy, link_extra: 'data_turbo_action="advance"') %>
+    <% end %>
   </div>
 
-  <div>
-    <label>
-      <%= radio_button_tag "filter_rent", "any", true, class: "form-check-input" %>
-      <label class="form-label">Compra/Arriendo</label>
-    </label>
-    <label>
-      <%= radio_button_tag "filter_rent", "true", class: "form-check-input" %>
-      <label class="form-label">Compra</label>
-    </label>
-    <label>
-      <%= radio_button_tag "filter_rent", "false", class: "form-check-input" %>
-      <label class="form-label">Arriendo</label>
-    </label>
-  </div>
-
-  <%= submit_tag "Filter" %>
-<% end %>
-
-<%= turbo_frame_tag "properties" do %>
-  <%= render partial: 'property', collection: @properties %>
-  <%== pagy_nav(@pagy, link_extra: 'data_turbo_action="advance"') %>
-<% end %>
-
-<%= link_to 'Nueva Propiedad', new_property_path %>
+  <%= link_to 'Nueva Propiedad', new_property_path %>
+</div>
