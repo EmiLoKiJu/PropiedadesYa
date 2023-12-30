@@ -12,9 +12,9 @@
   <% else %>
     <div><%= link_to 'Iniciar sesión', new_user_session_path, class: 'btn btn-success mb-2' %></div>
   <% end %>
-  <% if controller_name == "properties" && action_name == "index" %>
-    <div class="alert alert-warning mt-3" role="alert">
-      (nota: Links para editar y eliminar los incluí solo para comprobar autorización)
-    </div>
-  <% end %>
 </div>
+<% if controller_name == "properties" && action_name == "index" %>
+  <div class="alert alert-warning mt-3" role="alert">
+    (nota: Links para editar y eliminar los incluí solo para comprobar autorización)
+  </div>
+<% end %>

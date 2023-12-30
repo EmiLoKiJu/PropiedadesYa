@@ -1,51 +1,54 @@
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-md-10">
+<div class="container w-100">
+  <div class="justify-content-start w-100">
+    <div class="">
       <h1 class="text-center mb-4">Propiedades</h1>
-
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Se vende/Se arrienda</th>
-            <th>Precio guardado en USD/CLP</th>
-            <th>CLP</th>
-            <th>USD</th>
-            <th>Comuna</th>
-            <th>Dirección</th>
-            <th>Nro. de baños</th>
-            <th>Nro. de habitaciones</th>
-            <th>Descripción</th>
-            <th>Ver</th>
-            <th>Editar</th>
-            <th>Borrar</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @user_properties.each do |property| %>
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
             <tr>
-              <td><%= property.title %></td>
-              <td><%= property.rent ? "Se arrienda" : "Se vende" %></td>
-              <td><%= property.dollars ? "USD" : "CLP" %></td>
-              <td><%= number_with_delimiter(sprintf('%.0f', property.dollars ?  @dolar * property.price : property.price), delimiter: ',') %></td>
-              <td><%= sprintf('%.2f', property.dollars ? property.price : property.price / @dolar) %></td>
-              <td><%= Commune.find(property.commune_id).name %></td>
-              <td><%= property.address %></td>
-              <td><%= property.rooms %></td>
-              <td><%= property.bathrooms %></td>
-              <td>
-                <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="tooltip" title="<%= property.description %>">
-                  <i class="bi bi-info-circle">Ver</i>
-                </button>
-              </td>
-              <td><%= link_to 'Ver', property_path(property), data: { turbo_frame: "_top" }, class: "btn btn-info btn-sm" %></td>
-              <td><%= button_to 'Editar', edit_property_path(property), data: { turbo_frame: "_top" }, method: :get, class: "btn btn-warning btn-sm" %></td>
-              <td><%= button_to 'Eliminar', property_path(property), data: { turbo_frame: "_top" }, method: :delete, class: "btn btn-danger btn-sm" %></td>
+              <th>Title</th>
+              <th>Se vende/Se arrienda</th>
+              <th>Precio guardado en USD/CLP</th>
+              <th>CLP</th>
+              <th>USD</th>
+              <th>Comuna</th>
+              <th>Dirección</th>
+              <th>Nro. de baños</th>
+              <th>Nro. de habitaciones</th>
+              <th>Descripción</th>
+              <th>Ver</th>
+              <th>Editar</th>
+              <th>Borrar</th>
             </tr>
-          <% end %>
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            <% @user_properties.each do |property| %>
+              <tr>
+                <td><%= property.title %></td>
+                <td><%= property.rent ? "Se arrienda" : "Se vende" %></td>
+                <td><%= property.dollars ? "USD" : "CLP" %></td>
+                <td><%= number_with_delimiter(sprintf('%.0f', property.dollars ?  @dolar * property.price : property.price), delimiter: ',') %></td>
+                <td><%= sprintf('%.2f', property.dollars ? property.price : property.price / @dolar) %></td>
+                <td><%= Commune.find(property.commune_id).name %></td>
+                <td><%= property.address %></td>
+                <td><%= property.rooms %></td>
+                <td><%= property.bathrooms %></td>
+                <td>
+                  <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="tooltip" title="<%= property.description %>">
+                    <i class="bi bi-info-circle">Ver</i>
+                  </button>
+                </td>
+                <td><%= link_to 'Ver', property_path(property), data: { turbo_frame: "_top" }, class: "btn btn-info btn-sm" %></td>
+                <td><%= button_to 'Editar', edit_property_path(property), data: { turbo_frame: "_top" }, method: :get, class: "btn btn-warning btn-sm" %></td>
+                <td><%= button_to 'Eliminar', property_path(property), data: { turbo_frame: "_top" }, method: :delete, class: "btn btn-danger btn-sm" %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      
     </div>
+    <%= link_to 'Nueva Propiedad', new_property_path, class: "btn btn-primary my-2" %>
   </div>
 </div>
 
