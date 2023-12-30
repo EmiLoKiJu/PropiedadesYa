@@ -1,14 +1,20 @@
 <div class="container justify-content-center">
   <h1>Propiedades</h1>
   <%= form_with url: properties_path, method: :get, data: { turbo_action: "advance" } do %>
-    <%= text_field_tag "filter_title", params[:filter_title], placeholder: "Título" %>
-  
-    <%= label_tag "filter_commune", "Comuna:", class: "form-label" %>
-    <%= select_tag "filter_commune", options_from_collection_for_select(Commune.order(:name), :id, :name, params[:filter_commune]), include_blank: "Cualquier comuna", class: "form-select" %>
-  
-    <%= number_field_tag "filter_bathrooms", params[:filter_bathrooms], placeholder: "Mínimo Nro de Baños" %>
-  
-    <div>
+    <div class="my-2 w-100 d-flex flex-row justify-content-between">
+      <%= label_tag "filter_title", "Título de la publicación", class: "form-label" %>
+      <%= text_field_tag "filter_title", params[:filter_title], placeholder: "Título" %>
+    </div>
+    <div class="my-2 w-100 d-flex flex-row justify-content-between">
+      <%= label_tag "filter_commune", "Comuna:", class: "form-label" %>
+      <%= select_tag "filter_commune", options_from_collection_for_select(Commune.order(:name), :id, :name, params[:filter_commune]), include_blank: "Cualquier comuna", class: "form-select w-50" %>
+    </div>
+    <div class="my-2 w-100 d-flex flex-row justify-content-between">
+      <%= label_tag "filter_bathrooms", "Nro de baños", class: "form-label" %>
+      <%= number_field_tag "filter_bathrooms", params[:filter_bathrooms], placeholder: "Mínimo Nro de Baños" %>
+    </div>
+
+    <div class="my-2 w-100 d-flex flex-row justify-content-between">
       <label>
         <%= radio_button_tag "filter_rent", "any", (params[:filter_rent] == "any"), class: "form-check-input" %>
         <label class="form-label">Compra/Arriendo</label>
