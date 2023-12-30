@@ -1,59 +1,64 @@
 <%= form_with model: @property do |f| %>
-  <div class="d-flex flex-row">
-    <div>
-      <div>
-        <%= f.text_field :title, placeholder: "title" %>
+  <div class="d-flex flex-column flex-md-row justify-content-start align-items-start">
+    <div class="d-flex flex-column me-5">
+      <div class="my-2 w-100 d-flex flex-row justify-content-between">
+        <%= f.label 'Título' %>
+        <%= f.text_field :title %>
       </div>
 
-      <div>
-        <%= f.label :rent %>
+      <div class="my-2 w-100 d-flex flex-row justify-content-between">
+        <%= f.label 'Se arrienda?' %>
         <%= f.check_box :rent %>
       </div>
 
-      <div>
-        <%= f.label :price %>
+      <div class="my-2 w-100 d-flex flex-row justify-content-between">
+        <%= f.label 'Precio' %>
         <%= f.number_field :price, step: "any", placeholder: "price" %>
       </div>
 
-      <div>
-        <%= f.label :dollars %>
+      <div class="my-2 w-100 d-flex flex-row justify-content-between">
+        <%= f.label 'Está el precio en dólares?' %>
         <%= f.check_box :dollars %>
       </div>
 
-      <div>
-        <%= f.label :commune_id %>
+      <div class="my-2 w-100 d-flex flex-row justify-content-between">
+        <%= f.label 'Comuna' %>
         <%= f.collection_select :commune_id, Commune.order(:name), :id, :name, placeholder: "Commune" %>
       </div>
 
-      <div>
-        <%= f.text_field :address, placeholder: "Address" %>
+      <div class="my-2 w-100 d-flex flex-row justify-content-between">
+        <%= f.label 'Dirección' %>
+        <%= f.text_field :address%>
       </div>
 
-      <div>
-        <%= f.label :area %>
+      <div class="my-2 w-100 d-flex flex-row justify-content-between">
+        <%= f.label 'Área (m2)'  %>
         <%= f.number_field :area, placeholder: "Area" %>
       </div>
 
-      <div>
-        <%= f.label :rooms %>
+      <div class="my-2 w-100 d-flex flex-row justify-content-between">
+        <%= f.label 'Nro de habitaciones' %>
         <%= f.number_field :rooms, placeholder: "Rooms" %>
       </div>
 
-      <div>
-        <%= f.label :bathrooms %>
+      <div class="my-2 w-100 d-flex flex-row justify-content-between">
+        <%= f.label 'Nro de baños' %>
         <%= f.number_field :bathrooms, placeholder: "Bathrooms" %>
       </div>
 
-      <div>
-        <%= f.text_area :description, placeholder: "Description" %>
+      <div class="my-2 w-100 d-flex flex-row justify-content-between">
+        <%= f.label 'Descripción' %>
+        <%= f.text_area :description%>
       </div>
-
-      <div>
-        <%= f.label :pictures %>
+      <div class="my-2 w-100 d-flex flex-column">
+        <%= f.label 'Subir Fotos' %>
         <% @property.pictures.each do |picture| %>
           <%= f.hidden_field :pictures, multiple: true, value: picture.signed_id %>
         <% end %>
-        <%= f.file_field :pictures, multiple: true %> 
+        <%= f.file_field :pictures, multiple: true, class: "my-2" %> 
+      </div>
+      <div class="login-button my-2">
+        <%= f.submit "Guardar cambios", class: "btn btn-primary" %>
       </div>
     </div>
     <div>
@@ -92,8 +97,5 @@
         </div>
       </div>
     </div>
-  </div>
-  <div class="login-button">
-    <%= f.submit "Guardar cambios" %>
   </div>
 <% end %>
