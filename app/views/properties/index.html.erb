@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container justify-content-center">
   <h1>Propiedades</h1>
   <%= form_with url: properties_path, method: :get, data: { turbo_frame: "properties", turbo_action: "advance" } do %>
     <%= text_field_tag "filter_title", nil, placeholder: "Nombre" %>

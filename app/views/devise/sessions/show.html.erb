@@ -3,28 +3,38 @@
 <table>
   <thead>
     <tr>
-      <th>First name</th>
-      <th>Last name</th>
-      <th>Email</th>
-      <th>Properties</th>
+      <th>Title</th>
+      <th>Se vende/Se arrienda</th>
+      <th>Precio guardado en USD/CLP</th>
+      <th>CLP</th>
+      <th>USD</th>
+      <th>Comuna</th>
+      <th>Dirección</th>
+      <th>Nro. de baños</th>
+      <th>Nro. de habitaciones</th>
+      <th>Descripción</th>
+      <th>Ver</th>
+      <th>Editar</th>
+      <th>Borrar</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td><%= @user.first_name %></td>
-      <td><%= @user.last_name %></td>
-      <td><%= @user.email %></td>
-      <td>
-        <% if @user_properties.any? %>  
-          <ul>
-            <% @user_properties.each do |property| %>
-              <li><%= link_to property.title, property_path(property) %></li>
-            <% end %>
-          </ul>
-        <% else %>
-          No properties found.
-        <% end %>
-      </td>
-    </tr>
+    <% @user_properties.each do |property| %>
+      <tr>
+        <td><%= property.title %></td>
+        <td><%= property.rent ? "Se arrienda" : "Se vende" %></td>
+        <td><%= property.dollars ? "USD" : "CLP" %></td>
+        <td><%= property.dollars ? property.price : "CLP" %></td>
+        <td><%= property.dollars ? "USD" : property.price %></td>
+        <td><%= Commune.find(property.commune_id).name %></td>
+        <td><%= property.address %></td>
+        <td><%= property.rooms %></td>
+        <td><%= property.bathrooms %></td>
+        <td><%= property.description %></td>
+        <td>Ver</td>
+        <td>Editar</td>
+        <td>Borrar</td>
+      </tr>
+    <% end %>
   </tbody>
 </table>
