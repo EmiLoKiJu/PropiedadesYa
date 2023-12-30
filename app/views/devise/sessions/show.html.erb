@@ -27,8 +27,8 @@
               <td><%= property.title %></td>
               <td><%= property.rent ? "Se arrienda" : "Se vende" %></td>
               <td><%= property.dollars ? "USD" : "CLP" %></td>
-              <td><%= @dolar %> aca el dolar</td>
-              <td><%= property.dollars ? "USD" : property.price %></td>
+              <td><%= number_with_delimiter(sprintf('%.0f', property.dollars ?  @dolar * property.price : property.price), delimiter: ',') %></td>
+              <td><%= sprintf('%.2f', property.dollars ? property.price : property.price / @dolar) %></td>
               <td><%= Commune.find(property.commune_id).name %></td>
               <td><%= property.address %></td>
               <td><%= property.rooms %></td>
