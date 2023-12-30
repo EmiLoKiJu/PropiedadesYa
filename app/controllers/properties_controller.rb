@@ -4,23 +4,15 @@ class PropertiesController < ApplicationController
   before_action :set_property, only: %i[show edit update destroy]
   
   def index
-    filtered_properties = Property.all
-    if params[:filter_title].present?
-      filtered_properties = filtered_properties.where("title LIKE ?", "%#{params[:filter_title]}%")
-    end
-    if params[:filter_bathrooms].present?
-      filtered_properties = filtered_properties.where("bathrooms >= ?", params[:filter_bathrooms])
-    end
-
-    if params[:filter_commune].present?
-      filtered_properties = filtered_properties.where(commune_id: params[:filter_commune])
-    end
-
+    filtered = Property.all
+    filtered = filtered.where("title LIKE ?", "%#{params[:filter_title]}%") if params[:filter_title].present?
+    filtered = filtered.where("bathrooms >= ?", params[:filter_bathrooms]) if params[:filter_bathrooms].present?
     if params[:filter_rent].present? && params[:filter_rent] != "any"
       rent_filter = params[:filter_rent] != "true"
-      filtered_properties = filtered_properties.where(rent: rent_filter)
+      filtered = filtered.where(rent: rent_filter)
     end
-    @pagy, @properties = pagy(filtered_properties, items: 3)
+    filtered = filtered.where(commune_id: params[:filter_commune]) if params[:filter_commune].present?
+    @pagy, @properties = pagy(filtered, items: 4)  
   end
 
   def show
