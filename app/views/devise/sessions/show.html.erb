@@ -1,40 +1,59 @@
-<h1>Your Profile</h1>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-10">
+      <h1 class="text-center mb-4">Propiedades</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Se vende/Se arrienda</th>
-      <th>Precio guardado en USD/CLP</th>
-      <th>CLP</th>
-      <th>USD</th>
-      <th>Comuna</th>
-      <th>Dirección</th>
-      <th>Nro. de baños</th>
-      <th>Nro. de habitaciones</th>
-      <th>Descripción</th>
-      <th>Ver</th>
-      <th>Editar</th>
-      <th>Borrar</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @user_properties.each do |property| %>
-      <tr>
-        <td><%= property.title %></td>
-        <td><%= property.rent ? "Se arrienda" : "Se vende" %></td>
-        <td><%= property.dollars ? "USD" : "CLP" %></td>
-        <td><%= property.dollars ? property.price : "CLP" %></td>
-        <td><%= property.dollars ? "USD" : property.price %></td>
-        <td><%= Commune.find(property.commune_id).name %></td>
-        <td><%= property.address %></td>
-        <td><%= property.rooms %></td>
-        <td><%= property.bathrooms %></td>
-        <td><%= property.description %></td>
-        <td>Ver</td>
-        <td>Editar</td>
-        <td>Borrar</td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Se vende/Se arrienda</th>
+            <th>Precio guardado en USD/CLP</th>
+            <th>CLP</th>
+            <th>USD</th>
+            <th>Comuna</th>
+            <th>Dirección</th>
+            <th>Nro. de baños</th>
+            <th>Nro. de habitaciones</th>
+            <th>Descripción</th>
+            <th>Ver</th>
+            <th>Editar</th>
+            <th>Borrar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @user_properties.each do |property| %>
+            <tr>
+              <td><%= property.title %></td>
+              <td><%= property.rent ? "Se arrienda" : "Se vende" %></td>
+              <td><%= property.dollars ? "USD" : "CLP" %></td>
+              <td><%= property.dollars ? property.price : "CLP" %></td>
+              <td><%= property.dollars ? "USD" : property.price %></td>
+              <td><%= Commune.find(property.commune_id).name %></td>
+              <td><%= property.address %></td>
+              <td><%= property.rooms %></td>
+              <td><%= property.bathrooms %></td>
+              <td>
+                <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="tooltip" title="<%= property.description %>">
+                  <i class="bi bi-info-circle">Ver</i>
+                </button>
+              </td>
+              <td><%= link_to 'Ver', property_path(property), data: { turbo_frame: "_top" }, class: "btn btn-info btn-sm" %></td>
+              <td><%= button_to 'Editar', edit_property_path(property), data: { turbo_frame: "_top" }, method: :get, class: "btn btn-warning btn-sm" %></td>
+              <td><%= button_to 'Eliminar', property_path(property), data: { turbo_frame: "_top" }, method: :delete, class: "btn btn-danger btn-sm" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+      return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+  });
+</script>
