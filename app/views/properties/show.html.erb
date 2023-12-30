@@ -1,28 +1,36 @@
-<div>
-  <%= link_to image_tag(@property.thumbnail), @property.pictures.first if @property.thumbnail %>
+<div class="container my-4">
   <h2>Title: <%= @property.title %></h2>
-  <p>
-    <%= @property.rent ? "Se arrienda" : "Se vende" %>
-  </p>
-  <p><%= @property.dollars ? "USD" : "CLP" %> <%= @property.price %></p>
-  <p>
-    Comuna: <%= Commune.find(@property.commune_id).name %>
-  </p>
-  <p>Dirección: <%= @property.address %></p>
-  <p>Número de habitaciones: <%= @property.rooms %></p>
-  <p>Número de baños: <%= @property.bathrooms %></p>
-  <p>Descripción: <%= @property.description %></p>
-  <div>
-    <p>Current pictures:</p>
-    <br />
-    <% @property.pictures.each do |picture| %>
-    <div>
-        <%= link_to image_tag(@property.make_thumbnail(picture)), picture %>
+  <div class="d-flex">
+    <div class="me-5">
+      <div class="mb-3">
+        <%= @property.rent ? "Se arrienda" : "Se vende" %>
+      </div>
+
+      <div class="mb-3"><%= @property.dollars ? "USD" : "CLP" %> <%= @property.price %></div>
+
+      <div class="mb-3">
+        Comuna: <%= Commune.find(@property.commune_id).name %>
+      </div>
+
+      <div class="mb-3">Dirección: <%= @property.address %></div>
+
+      <div class="mb-3">Número de habitaciones: <%= @property.rooms %></div>
+
+      <div class="mb-3">Número de baños: <%= @property.bathrooms %></div>
+
+      <div class="mb-3">Descripción: <%= @property.description %></div>
+
+      <div class="d-flex">
+        <%= button_to 'Editar', edit_property_path(@property), data: { turbo_frame: "_top" }, method: :get, class: "btn btn-secondary me-2" %>
+        <%= button_to 'Eliminar', property_path(@property), data: { turbo_frame: "_top" }, method: :delete, class: "btn btn-danger" %>
+      </div>
     </div>
-    <% end %>
+    <div class="d-flex flex-wrap justify-content-start gap-2">
+      <% @property.pictures.each do |picture| %>
+        <div class="me-2">
+          <%= link_to image_tag(@property.make_thumbnail(picture), class: "img-thumbnail"), picture %>
+        </div>
+      <% end %>
+    </div>
   </div>
-  <p>
-    <%= link_to 'Editar', edit_property_path(@property), data: { turbo_frame: "_top" } %>
-    <%= link_to 'Eliminar', @property, method: :delete, data: { turbo_frame: "_top" } %>
-  </p>
 </div>

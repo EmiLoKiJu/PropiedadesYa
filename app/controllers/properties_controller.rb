@@ -47,7 +47,7 @@ class PropertiesController < ApplicationController
 
   def update
     if @property.update(property_params)
-      redirect_to properties_url, notice: success_message('updated')
+      redirect_to property_url(@property), notice: success_message('updated')
     else
       flash[:notice] = "Errors: #{@property.errors.full_messages}"
       redirect_to edit_property_path(@property)
