@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Ability
   include CanCan::Ability
 
@@ -8,7 +6,5 @@ class Ability
       property.user == user
     end
     can :create, Property
-
-    
   end
 end

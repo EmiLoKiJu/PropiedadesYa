@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Users::SessionsController < Devise::SessionsController
   before_action :authenticate_user!, only: [:show]
 
@@ -31,12 +29,10 @@ class Users::SessionsController < Devise::SessionsController
   #   super
   # end
 
-  def after_sign_in_path_for(resource)
+  def after_sign_in_path_for(_resource)
     user_profile_path(current_user)
   end
 
-  protected
 
   # If you have extra params to permit, append them to the sanitizer.
-  
 end
