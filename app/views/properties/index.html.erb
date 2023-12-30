@@ -4,17 +4,22 @@
   <%= number_field_tag "filter_bathrooms", nil, placeholder: "Mínimo Nro de Baños" %>
 
   <div>
+    <%= label_tag "filter_commune", "Commune:", class: "form-label" %>
+    <%= select_tag "filter_commune", options_from_collection_for_select(Commune.order(:name), :id, :name, params[:filter_commune]), include_blank: "Select Commune", class: "form-select" %>
+  </div>
+
+  <div>
     <label>
-      <%= radio_button_tag "filter_rent", "any", true %>
-      Compra/Arriendo
+      <%= radio_button_tag "filter_rent", "any", true, class: "form-check-input" %>
+      <label class="form-label">Compra/Arriendo</label>
     </label>
     <label>
-      <%= radio_button_tag "filter_rent", "true" %>
-      Compra
+      <%= radio_button_tag "filter_rent", "true", class: "form-check-input" %>
+      <label class="form-label">Compra</label>
     </label>
     <label>
-      <%= radio_button_tag "filter_rent", "false" %>
-      Arriendo
+      <%= radio_button_tag "filter_rent", "false", class: "form-check-input" %>
+      <label class="form-label">Arriendo</label>
     </label>
   </div>
 

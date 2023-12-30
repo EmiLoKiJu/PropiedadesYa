@@ -11,6 +11,11 @@ class PropertiesController < ApplicationController
     if params[:filter_bathrooms].present?
       filtered_properties = filtered_properties.where("bathrooms >= ?", params[:filter_bathrooms])
     end
+
+    if params[:filter_commune].present?
+      filtered_properties = filtered_properties.where(commune_id: params[:filter_commune])
+    end
+
     if params[:filter_rent].present? && params[:filter_rent] != "any"
       rent_filter = params[:filter_rent] != "true"
       filtered_properties = filtered_properties.where(rent: rent_filter)
