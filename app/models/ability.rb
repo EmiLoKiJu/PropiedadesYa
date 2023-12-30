@@ -6,5 +6,6 @@ class Ability
       property.user == user
     end
     can :create, Property
+    can :read, Property
   end
 end
