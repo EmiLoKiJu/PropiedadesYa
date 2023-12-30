@@ -1,12 +1,12 @@
 <div class="container">
   <h1>Propiedades</h1>
   <%= form_with url: properties_path, method: :get, data: { turbo_frame: "properties", turbo_action: "advance" } do %>
-    <%= text_field_tag "filter_title", nil, placeholder: "filter_title" %>
+    <%= text_field_tag "filter_title", nil, placeholder: "Nombre" %>
     <%= number_field_tag "filter_bathrooms", nil, placeholder: "Mínimo Nro de Baños" %>
 
     <div>
-      <%= label_tag "filter_commune", "Commune:", class: "form-label" %>
-      <%= select_tag "filter_commune", options_from_collection_for_select(Commune.order(:name), :id, :name, params[:filter_commune]), include_blank: "Select Commune", class: "form-select" %>
+      <%= label_tag "filter_commune", "Comuna:", class: "form-label" %>
+      <%= select_tag "filter_commune", options_from_collection_for_select(Commune.order(:name), :id, :name, params[:filter_commune]), include_blank: "Cualquier comuna", class: "form-select" %>
     </div>
 
     <div>
@@ -24,7 +24,7 @@
       </label>
     </div>
 
-    <%= submit_tag "Filter" %>
+    <%= submit_tag "Aplicar filtros" %>
   <% end %>
   
   <div>
