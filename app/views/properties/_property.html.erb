@@ -2,10 +2,10 @@
   <% if property.thumbnail %>
     <%= link_to image_tag(property.thumbnail, class: "card-img-left"), property.pictures.first %>
   <% end %>
-  <div class="mx-3">
+  <div class="">
     <h2 class="mb-2"><%= property.title %></h2>
     <div class="d-flex flex-row">
-      <div class="d-flex flex-column justify-content-between">
+      <div class="d-flex flex-column justify-content-between w-50">
         <h3 class="text-muted">
           <%= property.rent ? "Se arrienda" : "Se vende" %>
         </h3>
@@ -14,15 +14,16 @@
           Comuna: <%= Commune.find(property.commune_id).name %>
         </h4>
       </div>
-      <div class="d-flex flex-column ms-4">
+      <div class="d-flex flex-column w-50">
         <p>Dueño (para comprobar autorización)</p>
         <p><%= property.user.first_name %> <%= property.user.last_name %></p>
-        <div class="d-flex flex-row align-items-center">
-          <%= link_to 'Ver', property_path(property), data: { turbo_frame: "_top" }, class: "btn btn-primary mx-2" %>
-          <p>(nota1)</p>
-          <%= button_to 'Editar', edit_property_path(property), data: { turbo_frame: "_top" }, method: :get, class: "btn btn-secondary mx-2" %>
-          <%= button_to 'Eliminar', property_path(property), data: { turbo_frame: "_top" }, method: :delete, class: "btn btn-danger mx-2" %>
-        </div>
+      </div>
+    </div>
+    <div class="d-flex flex-row justify-content-between">
+      <%= link_to 'Ver', property_path(property), data: { turbo_frame: "_top" }, class: "btn btn-primary my-2" %>
+      <div class="d-flex flex-row">
+      <%= button_to 'Editar', edit_property_path(property), data: { turbo_frame: "_top" }, method: :get, class: "btn btn-secondary mx-2" %>
+      <%= button_to 'Eliminar', property_path(property), data: { turbo_frame: "_top" }, method: :delete, class: "btn btn-danger mx-2" %>
       </div>
     </div>
   </div>
