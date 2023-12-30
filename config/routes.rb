@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   }
 
   devise_scope :user do
-    get 'users/show', to: 'users/sessions#show', as: :user_profile
+    get 'users/show/:id', to: 'users/sessions#show', as: :user_profile
     get "/custom_sign_out" => "devise/sessions#destroy", as: :custom_destroy_user_session
   end
   resources :properties
