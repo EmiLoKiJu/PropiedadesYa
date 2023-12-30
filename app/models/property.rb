@@ -20,7 +20,7 @@ class Property < ApplicationRecord
   validate :description_does_not_contain_contact_info
 
   def at_least_one_picture_attached
-    errors.add(:pictures, "must have at least one attached picture") unless pictures.attached? && pictures.count >= 1
+    errors.add(:pictures, 'must have at least one attached picture') unless pictures.attached? && pictures.count >= 1
   end
 
   def thumbnail
@@ -44,7 +44,7 @@ class Property < ApplicationRecord
 
     forbidden_patterns.each do |pattern|
       if description =~ pattern
-        errors.add(:description, "should not contain contact information")
+        errors.add(:description, 'should not contain contact information')
         break
       end
     end
