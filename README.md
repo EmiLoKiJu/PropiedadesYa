@@ -63,6 +63,8 @@ There's also an image attached with the diagram
 ## Live demo <a name="live-demo"></a>
 
 Link to the live demo [here](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
+I tried deploying but didn't succeed. Here's a video presentation instead (in spanish) 
+[video presentation](https://drive.google.com/file/d/1rLpNHEKnDB8skFbJX8262VLcyLJovGeM/view?usp=sharing)
 
 ## 💻 Getting Started <a name="getting-started"></a>
 <!-- https://github.com/EmiLoKiJu/PropiedadesYa -->
@@ -74,6 +76,7 @@ To get a local copy of this project and run it in your computer, follow these st
 In order to run this project you need:
 - Ruby 3 or above
 - Ruby on rails 7 or above
+- Image Magick (If you don't want to use this, comment line 6 of the file at config/environments/development.rb and will make use of vips by default)
 
 ### Setup
 

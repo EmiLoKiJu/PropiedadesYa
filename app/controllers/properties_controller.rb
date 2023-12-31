@@ -15,7 +15,15 @@ class PropertiesController < ApplicationController
     @pagy, @properties = pagy(filtered, items: 4)
   end
 
-  def show; end
+  def show
+    api_data = ApiService.fetch_dolar_value
+
+    if api_data
+      @dolar = api_data
+    else
+      flash[:error] = 'Failed to retrieve data from the API'
+    end
+  end
 
   def new
     @property = Property.new

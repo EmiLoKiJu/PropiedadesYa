@@ -13,7 +13,9 @@
         <%= @property.rent ? "Se arrienda" : "Se vende" %>
       </div>
 
-      <div class="mb-3"><%= @property.dollars ? "USD" : "CLP" %> <%= @property.price %></div>
+      <div class="mb-3">Precio guardado en: <%= @property.dollars ? "USD" : "CLP" %></div>
+      <div class="mb-3">CLP: <%= number_with_delimiter(sprintf('%.0f', @property.dollars ?  @dolar * @property.price : @property.price), delimiter: ',') %></div>
+      <div class="mb-3">USD: <%= sprintf('%.2f', @property.dollars ? @property.price : @property.price / @dolar) %></div>
 
       <div class="mb-3">
         Comuna: <%= Commune.find(@property.commune_id).name %>
