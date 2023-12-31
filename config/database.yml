@@ -81,6 +81,4 @@ test:
 #
 production:
   <<: *default
-  database: propiedades_ya_production
-  # username: propiedades_ya
-  # password: <%= ENV["PROPIEDADES_YA_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>

@@ -1,0 +1,27 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  rent: false
+  price: 1.5
+  dollars: false
+  commune: one
+  address: MyString
+  area: 1
+  rooms: 1
+  bathrooms: 1
+  description: MyString
+  user: one
+
+two:
+  title: MyString
+  rent: false
+  price: 1.5
+  dollars: false
+  commune: two
+  address: MyString
+  area: 1
+  rooms: 1
+  bathrooms: 1
+  description: MyString
+  user: two

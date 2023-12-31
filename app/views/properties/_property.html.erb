@@ -1,0 +1,75 @@
+<div class="d-flex flex-column border p-4 my-2 w-100">
+  <div class="d-flex justify-content-between">
+    <% if property.thumbnail %>
+      <%= link_to image_tag(property.thumbnail, class: "card-img-left"), property.pictures.first %>
+    <% end %>
+    <div class="d-none d-lg-flex flex-wrap">
+      <% if property.pictures.size >= 4 %>
+        <% property.pictures[1..3].each do |picture| %>
+          <div class="me-2">
+            <%= link_to image_tag(property.make_thumbnail(picture), class: "img-thumbnail"), picture %>
+          </div>
+        <% end %>
+      <% else %>
+        <% property.pictures.each do |picture| %>
+          <div class="me-2">
+            <%= link_to image_tag(property.make_thumbnail(picture), class: "img-thumbnail"), picture %>
+          </div>
+        <% end %>
+      <% end %>
+      
+    </div>
+    <div class="d-block d-lg-none">
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#picturesModal<%= property.id %>">
+        Todas las fotos
+      </button>
+      <div class="modal fade" id="picturesModal<%= property.id %>" tabindex="-1" aria-labelledby="picturesModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Fotos</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <% property.pictures.each do |picture| %>
+                <div class="me-2">
+                  <%= link_to image_tag(property.make_thumbnail(picture), class: "img-thumbnail"), picture %>
+                </div>
+              <% end %>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="">
+    <h2 class="mb-2"><%= property.title %></h2>
+    <div class="d-flex flex-row">
+      <div class="d-flex flex-column justify-content-between w-50">
+        <h3 class="text-muted">
+          <%= property.rent ? "Se arrienda" : "Se vende" %>
+        </h3>
+        <h4 class=""><%= property.dollars ? "USD" : "CLP" %> <%= property.price %></h4>
+        <h4 class="">
+          Comuna: <%= Commune.find(property.commune_id).name %>
+        </h4>
+      </div>
+      <div class="d-flex flex-column w-50">
+        <p>Dueño (para comprobar autorización)</p>
+        <p><%= property.user.first_name %> <%= property.user.last_name %></p>
+      </div>
+    </div>
+    <div class="d-flex flex-row justify-content-between">
+      <%= link_to 'Ver', property_path(property), data: { turbo_frame: "_top" }, class: "btn btn-primary my-2" %>
+      <div class="d-flex flex-row">
+      <%= button_to 'Editar', edit_property_path(property), data: { turbo_frame: "_top" }, method: :get, class: "btn btn-secondary mx-2" %>
+      <%= button_to 'Eliminar', property_path(property), data: { turbo_frame: "_top" }, method: :delete, class: "btn btn-danger mx-2" %>
+      </div>
+    </div>
+  </div>
+</div>

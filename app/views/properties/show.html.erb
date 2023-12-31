@@ -1,0 +1,38 @@
+<div class="container my-4">
+  <h2>Title: <%= @property.title %></h2>
+  <div class="d-flex flex-column flex-md-row ">
+    <div class="d-flex flex-wrap justify-content-start gap-2 w-100 w-md-50">
+      <% @property.pictures.each do |picture| %>
+        <div class="me-2">
+          <%= link_to image_tag(@property.make_thumbnail(picture), class: "img-thumbnail"), picture %>
+        </div>
+      <% end %>
+    </div>
+    <div class="me-5 order-md-first w-100 w-md-50">
+      <div class="mb-3">
+        <%= @property.rent ? "Se arrienda" : "Se vende" %>
+      </div>
+
+      <div class="mb-3">Precio guardado en: <%= @property.dollars ? "USD" : "CLP" %></div>
+      <div class="mb-3">CLP: <%= number_with_delimiter(sprintf('%.0f', @property.dollars ?  @dolar * @property.price : @property.price), delimiter: ',') %></div>
+      <div class="mb-3">USD: <%= sprintf('%.2f', @property.dollars ? @property.price : @property.price / @dolar) %></div>
+
+      <div class="mb-3">
+        Comuna: <%= Commune.find(@property.commune_id).name %>
+      </div>
+
+      <div class="mb-3">Dirección: <%= @property.address %></div>
+
+      <div class="mb-3">Número de habitaciones: <%= @property.rooms %></div>
+
+      <div class="mb-3">Número de baños: <%= @property.bathrooms %></div>
+
+      <div class="mb-3">Descripción: <%= @property.description %></div>
+
+      <div class="d-flex">
+        <%= button_to 'Editar', edit_property_path(@property), data: { turbo_frame: "_top" }, method: :get, class: "btn btn-secondary me-2" %>
+        <%= button_to 'Eliminar', property_path(@property), data: { turbo_frame: "_top" }, method: :delete, class: "btn btn-danger" %>
+      </div>
+    </div>
+  </div>
+</div>
